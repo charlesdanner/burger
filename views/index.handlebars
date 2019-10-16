@@ -1,0 +1,30 @@
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col-xs-4">
+            {{#each notDevoured}}
+            <div class='not-devoured'>
+                <p>{{this.burger_name}}</p>
+                <button id='{{this.id}}'>DEVOUR IT!</button>
+            </div>
+            {{/each}}
+        </div>
+
+        <div class="col-xs-4">
+            <img src='assets/img/burger.png' class='d-block' alt="Burger Picture">
+            <textarea name="newBurger" id="" class='d-block' cols='40' rows="2"></textarea>
+            <button class='btn btn-primary' name='submit'>Submit</button>
+        </div>
+        <div class="col-xs-4">
+            <div>
+                {{#each devoured}}
+                <div class="devoured">
+                <p>{{this.burger_name}}</p>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+    </div>
+
+</div>

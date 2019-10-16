@@ -1,14 +1,17 @@
 const connection = require('./connection.js');
 
 const orm = {
-    selectAll: (tableInput) => {
+    selectAll: (tableInput, callback) => {
         let queryString = "Select * FROM ??";
-        let data;
         connection.query(queryString, [tableInput], (err, result) => {
             if(err) throw err;
-            return (result);
+            const data = {notDevoured: [], devoured: []}
+            result.filter(element => {
+                element.devoured ? data.devoured.push(element) : data.notDevoured.push(element);
+            })
+            console.log(data)
+            callback(data);
         })
     }
 };
-
 module.exports = orm;

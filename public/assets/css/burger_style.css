@@ -1,3 +1,20 @@
 body{
+    margin: auto;
     background-color: coral;
+    
+}
+
+.container{
+    margin: auto;
+}
+
+.not-devoured{
+    background-color: white;
+    margin: 20px;
+}
+
+img{
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
 }

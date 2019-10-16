@@ -1,22 +1,15 @@
 const express = require('express');
+const app = express();
 const connection = require('./../config/connection');
 const orm = require('./../config/orm');
 
+
 module.exports = app => {
-    const parseDB = () => {
-        return orm.selectAll('burgers')
-    }
 
-    app.get('/', (req, res) => {
-
-        
-
-        //let result = orm.selectAll("burgers");
-        //res.render('index', orm.selectAll("burgers"));
-
-
-
-
+    app.get('/',(req, res) => {
+        orm.selectAll('burgers', function(data) {
+            res.render('index', data)
+        })
     })
 
     app.post('/', (req, res) => {
