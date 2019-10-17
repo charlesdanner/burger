@@ -5,13 +5,14 @@
             {{#each notDevoured}}
             <div class='not-devoured'>
                 <p>{{this.id}}. {{this.burger_name}}</p>
-                <button id='{{this.id}}'>DEVOUR IT!</button>
+                <button id='{{this.id}}' class='devourBtn'>DEVOUR IT!</button>
             </div>
             {{/each}}
         </div>
 
         <div class="col-xs-4">
             <img src='assets/img/burger.png' class='d-block' alt="Burger Picture">
+            <p id='error' class="error"><strong>Type the burger name before submitting</strong></p>
             <textarea name="newBurger" id="textArea" class='d-block' cols='40' rows="2"></textarea>
             <button class='btn btn-primary' id='submit' name='submit'>Submit</button>
         </div>

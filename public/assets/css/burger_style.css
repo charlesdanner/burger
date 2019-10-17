@@ -16,6 +16,9 @@ body{
     height: 75px;
 }
 
+.error{
+    display: none;
+}
 
 img{
     max-width: 340px;
