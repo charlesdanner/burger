@@ -8,8 +8,7 @@ const orm = {
             const data = {notDevoured: [], devoured: []}
             result.filter(element => {
                 element.devoured ? data.devoured.push(element) : data.notDevoured.push(element);
-            })
-            console.log(data)
+            });
             callback(data);
         })
     }

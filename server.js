@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const mysql = require('./config/connection');
 const exphbs = require('express-handlebars');
 
 const PORT = process.env.PORT || 3000;
