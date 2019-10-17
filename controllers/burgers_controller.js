@@ -13,7 +13,19 @@ module.exports = app => {
     })
 
     app.post('/', (req, res) => {
+        orm.checkIfExists('burgers', `${req.body.newBurger}`, (filter) =>{
+            console.log(filter)
+            if(filter.length === 0){
+                orm.createNew('burgers','burger_name', req.body.newBurger, () =>{
+                    res.json({burgerExists: false})
+                })
+            } else res.json({burgerExists: true})
+        })
 
+        
+
+
+        
     })
 }
 
