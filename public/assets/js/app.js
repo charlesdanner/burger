@@ -1,29 +1,26 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function (event) {        //event listener listening for if the DOM has been loaded completely or not
 
-    const textArea = document.getElementById('textArea');
-    const devourBtn = document.getElementsByClassName('devourBtn')
+    const textArea = document.getElementById('textArea');           //HTML text are assigned to a variable
+    const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
 
-    document.getElementById('submit').addEventListener('click', () => {
-        const newBurger = textArea.value.trim()
-        document.getElementById('error').style.display = 'none';
+    document.getElementById('submit').addEventListener('click', () => { //when the submit button is clicked...
+        const newBurger = textArea.value.trim()                     //get the value of the text area
+        document.getElementById('error').style.display = 'none';        //set the error message back to its default css display style
 
-        if (textArea.value.trim() != "") {
+        if (textArea.value.trim() != "") {          //if the textare isn't empty..
 
-            axios.post('/', { newBurger })
-                .then(response => {
-                    response.data.burgerExists ?   console.log('this shit is fucked') : location.reload();          
-                })
-        } else {
-            document.getElementById('error').style.display = 'block'
-            document.getElementById('error').style.color = 'red';
-        }
+            axios.post('/', { newBurger })                          //make an axios call sending the value of the text input contained within an object
+                .then(response => !response.data.burgerExists ? location.reload() : document.getElementById('badName').style.display = 'block', 
+                                                                                    document.getElementById('badName').style.color = 'red')
+        } else document.getElementById('error').style.display = 'block', document.getElementById('error').style.color = 'red'
+
     })
 
-   for(var i = 0; i < devourBtn.length; i++){
-       devourBtn[i].addEventListener('click', function() {
-           console.log(this.id)
-       })
-   }
+    for (var i = 0; i < devourBtn.length; i++) {        //for loop looping through the devourBtn array creating click event listeners for each one
+        devourBtn[i].addEventListener('click', function () {
+            console.log(this.id)
+        })
+    }
 
 
 })

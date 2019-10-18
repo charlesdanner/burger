@@ -16,7 +16,7 @@ body{
     height: 75px;
 }
 
-.error{
+.error, .badName{
     display: none;
 }
 
