@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (event) {        //event listener listening for if the DOM has been loaded completely or not
+document.addEventListener("DOMContentLoaded", event => {        //event listener listening for if the DOM has been loaded completely or not
 
     const textArea = document.getElementById('textArea');           //HTML text are assigned to a variable
     const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function (event) {        //event 
 
         if (textArea.value.trim() != "") {          //if the textare isn't empty..
 
-            axios.post('/', { newBurger })                          //make an axios call sending the value of the text input contained within an object
+            axios.post('/api/new-burger', { newBurger })                          //make an axios call sending the value of the text input contained within an object
                 .then(response => !response.data.burgerExists ? location.reload() : document.getElementById('badName').style.display = 'block', 
                                                                                     document.getElementById('badName').style.color = 'red')
         } else document.getElementById('error').style.display = 'block', document.getElementById('error').style.color = 'red'
@@ -17,8 +17,14 @@ document.addEventListener("DOMContentLoaded", function (event) {        //event 
     })
 
     for (var i = 0; i < devourBtn.length; i++) {        //for loop looping through the devourBtn array creating click event listeners for each one
-        devourBtn[i].addEventListener('click', function () {
+        devourBtn[i].addEventListener('click', function() { //not using ES6 arrow function because it changes the scope to the window
             console.log(this.id)
+            axios.put(`/api/devour-burger/${this.id}`)
+            .then(response => {
+                response.data === 1 ? location.reload() : console.log('an error occurred')
+            })
+
+           
         })
     }
 

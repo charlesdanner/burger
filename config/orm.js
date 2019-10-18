@@ -10,7 +10,7 @@ const orm = {           //orm object that will be exported to the controller fil
             cb(data);       //declaring callback function using the sorted tablee entries
         })
     },
-    createNew: (table, column, item, cb) => {   //function used to create a new entry in the table
+    insertOne: (table, column, item, cb) => {   //function used to create a new entry in the table
         const queryString = "INSERT INTO ?? (??) VALUES (?)"
         connection.query(queryString, [table, column, item], (err, result) => {
             if (err) throw err; 
@@ -25,5 +25,12 @@ const orm = {           //orm object that will be exported to the controller fil
             cb(filter);     //declared call back function acting on the filter that was populated above
         })
     },
+    updateOne: (table, columnToChange, newValue, searchKey, key, cb) => {
+        const queryString = 'UPDATE ?? SET ?? = ? WHERE ?? = ?';
+        connection.query(queryString, [table, columnToChange, newValue, searchKey, key], (err, result) => {
+            if(err) throw err;
+            cb(result)
+        })
+    }
 };
 module.exports = orm;
