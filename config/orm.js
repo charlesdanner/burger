@@ -33,6 +33,14 @@ const orm = {           //orm object that will be exported to the controller fil
             if(err) throw err;
             cb(result)
         })
+    },
+    deleteOne: (table, condition, cb ) => {
+        console.log('orm firing')
+    const queryString  = 'DELETE FROM ?? WHERE id = ?'
+    connection.query(queryString, [table, condition], (err, result) => {
+        if(err) throw err;
+        cb(result)
+    })
     }
 };
 module.exports = orm;

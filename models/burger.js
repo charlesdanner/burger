@@ -19,6 +19,11 @@ const burger = {
         orm.updateOne(table, col, newValue, searchKey, key, function(res){
             cb(res)
         });
+    },
+    delete: function(table, condition, cb){
+        orm.deleteOne(table, condition, function(result){
+            cb(result)
+        })
     }
 };
 

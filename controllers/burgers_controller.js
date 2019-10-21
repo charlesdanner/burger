@@ -25,6 +25,14 @@ router.put('/api/devour-burger/:id', (req, res) => {
     })
 })
 
+router.delete('/api/delete-burger/:id', (req, res) =>{
+    console.log('this is running')
+    const id = req.params.id;
+    burger.delete('burgers', id, function(result){
+        res.json(result)
+    })
+})
+
 module.exports = router
 
 

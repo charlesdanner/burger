@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
 
     for (var i = 0; i < trashBtn.length; i++) {        //for loop looping through the trashBtn array creating click event listeners for each one
         trashBtn[i].addEventListener('click', function() { //not using ES6 arrow function because it changes the scope to the window
-            axios.delete(`/api/trash-burger/${this.id}`)
+            axios.delete(`/api/delete-burger/${this.id}`)
             .then(response => {
-                response.data === 1 ? location.reload() : console.log('an error occurred')
+                response ? location.reload() : console.log('an error occurred')
             })    
         })
     }
