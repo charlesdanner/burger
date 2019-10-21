@@ -11,18 +11,13 @@ const burger = {
             console.log(burgerExists)
              if(burgerExists) return cb({ burgerExists: true })
              else orm.insertOne(table, col, vals, function(err, result){
-                if(err) console.log(err)
+                if(err) throw err
                 cb({ burgerExists: false })
              })
         })
-        
-        // orm.insertOne('burgers', col, vals, function(res){
-        //     res ? cb({burgerExists : true}) : cb(res)
-        //     cb(res)
-        // })
     },
-    update: function(objColVals, condition, cb) {
-        orm.updateOne('burgers', objColVals, condition, function(res){
+    update: function(table, col, newValue, searchKey, key, cb) {
+        orm.updateOne(table, col, newValue, searchKey, key, function(res){
             cb(res)
         });
     }
