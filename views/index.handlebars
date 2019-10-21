@@ -9,7 +9,7 @@
             {{#each notDevoured}}
             <div class='not-devoured'>
                 <p>{{this.id}}. {{this.burger_name}}</p>
-                <button id='{{this.id}}' class='devourBtn'>DEVOUR IT!</button>
+                <button id='{{this.id}}' class='devourBtn btn btn-warning'>DEVOUR IT!</button>
             </div>
             {{/each}}
         </div>
@@ -27,6 +27,7 @@
                 {{#each devoured}}
                 <div class="devoured">
                 <p>{{this.id}}. {{this.burger_name}}</p>
+                <button id="{{this.id}}" class='btn btn-danger trashBtn'>TRASH IT!</button>
                 </div>
                 {{/each}}
             </div>

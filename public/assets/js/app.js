@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
 
     const textArea = document.getElementById('textArea');           //HTML text are assigned to a variable
     const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
+    const trashBtn = document.getElementsByClassName('trashBtn')
 
     document.getElementById('submit').addEventListener('click', () => { //when the submit button is clicked...
         const newBurger = textArea.value.trim()                     //get the value of the text area
@@ -18,13 +19,19 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
 
     for (var i = 0; i < devourBtn.length; i++) {        //for loop looping through the devourBtn array creating click event listeners for each one
         devourBtn[i].addEventListener('click', function() { //not using ES6 arrow function because it changes the scope to the window
-            console.log(this.id)
             axios.put(`/api/devour-burger/${this.id}`)
             .then(response => {
                 response.data === 1 ? location.reload() : console.log('an error occurred')
-            })
+            })    
+        })
+    }
 
-           
+    for (var i = 0; i < trashBtn.length; i++) {        //for loop looping through the trashBtn array creating click event listeners for each one
+        trashBtn[i].addEventListener('click', function() { //not using ES6 arrow function because it changes the scope to the window
+            axios.delete(`/api/trash-burger/${this.id}`)
+            .then(response => {
+                response.data === 1 ? location.reload() : console.log('an error occurred')
+            })    
         })
     }
 

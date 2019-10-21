@@ -8,7 +8,6 @@ const burger = {
     },
     create: function(table, col, vals, cb) {
         orm.checkIfExists(table, col, vals, function(burgerExists){
-            console.log(burgerExists)
              if(burgerExists) return cb({ burgerExists: true })
              else orm.insertOne(table, col, vals, function(err, result){
                 if(err) throw err
