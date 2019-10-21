@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-xs-4">
-            {{#each burgers.notDevoured}}
+            {{#each notDevoured}}
             <div class='not-devoured'>
                 <p>{{this.id}}. {{this.burger_name}}</p>
                 <button id='{{this.id}}' class='devourBtn'>DEVOUR IT!</button>
@@ -19,7 +19,7 @@
         </div>
         <div class="col-xs-4">
             <div>
-                {{#each burgers.devoured}}
+                {{#each devoured}}
                 <div class="devoured">
                 <p>{{this.burger_name}}</p>
                 </div>

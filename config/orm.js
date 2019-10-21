@@ -17,12 +17,14 @@ const orm = {           //orm object that will be exported to the controller fil
             cb()
         })
     },
-    checkIfExists: (table, item, cb) => {   //function used to check to see if an incoming post request for a new burger entry already exists within the table
+    checkIfExists: (table, column, item, cb) => {   //function used to check to see if an incoming post request for a new burger entry already exists within the table
         const queryString = 'Select * FROM ??';
         connection.query(queryString, [table], (err, result) => {
             if (err) throw err;
+            let burgerExists;
             const filter = result.filter(burgers => burgers.burger_name === item);      //sorting the table to see if any entries are the same name as the incoming argument (req.params.newBurger in practice)
-            cb(filter);     //declared call back function acting on the filter that was populated above
+            filter.length > 0 ? burgerExists = true : burgerExists = false
+            cb(burgerExists);     //declared call back function acting on the filter that was populated above
         })
     },
     updateOne: (table, columnToChange, newValue, searchKey, key, cb) => {
