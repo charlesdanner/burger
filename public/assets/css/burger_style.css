@@ -1,5 +1,6 @@
 body{
     margin: auto;
+    margin-top: 30px;
     background-color: coral;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -9,11 +10,27 @@ body{
     margin-top: 40px;
 }
 
+.devoured{
+    padding: 0px;
+    padding-top: 25px;
+}
+.not-devoured{
+    padding: 10px;
+}
+
 .not-devoured, .devoured{
     background-color: white;
     margin: 20px;
     width: 200px;
-    height: 75px;
+    min-height: 75px;
+}
+
+.submit{
+    margin: 10px;
+}
+
+.main{
+    max-width: 340px;
 }
 
 .error, .badName{
