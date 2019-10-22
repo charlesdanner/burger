@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
 
     const textArea = document.getElementById('textArea');           //HTML text are assigned to a variable
     const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
-    const trashBtn = document.getElementsByClassName('trashBtn')
 
     const resetErrorMessages = () => {
         document.getElementById('error').style.display = 'none';        //set the error message back to its default css display style
@@ -43,12 +42,14 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
         })
     }
 
-    for (var i = 0; i < trashBtn.length; i++) {        //for loop looping through the trashBtn array creating click event listeners for each one
-        trashBtn[i].addEventListener('click', function () { //not using ES6 arrow function because it changes the scope to the window
-            axios.delete(`/api/delete-burger/${this.id}`)
+    document.addEventListener('click', event => {
+
+        if(event.target.matches('.trashBtn')){
+            axios.delete(`/api/delete-burger/${event.target.id}`)
                 .then(response => {
-                    response ? location.reload() : console.log('an error occurred')
+                    response ? location.reload() : console.log('an error occured')
                 })
-        })
-    }
+        }
+    })
+
 })

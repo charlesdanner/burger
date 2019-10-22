@@ -3,7 +3,7 @@ const router = express.Router();
 const burger = require('../models/burger.js');
 
 router.get('/', (req, res) => {
-    burger.all(function(data) {
+    burger.all(data => {
         res.render('index', data)
     })
 })
@@ -17,14 +17,14 @@ router.post('/api/new-burger', (req, res) => {                   //when a post r
 
 router.put('/api/devour-burger/:id', (req, res) => {
     const id = req.params.id;
-    burger.update('burgers', 'devoured', true, 'id', id, function(result){
+    burger.update('burgers', 'devoured', true, 'id', id, result =>{
         res.json(result)
     })
 })
 
 router.delete('/api/delete-burger/:id', (req, res) =>{
     const id = req.params.id;
-    burger.delete('burgers', id, function(result){
+    burger.delete('burgers', id, result =>{
         res.json(result)
     })
 })

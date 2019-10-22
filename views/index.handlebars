@@ -4,10 +4,8 @@
 
 </div>
 <div class="container text-center d-flex justify-content-center">
-
     <div class="row">
-
-        <div class="col-xs-3 not-devoured-container">
+        <div class="col-xs not-devoured-container">
             {{#each notDevoured}}
             <div class='not-devoured'>
                 <p>{{this.id}}. {{this.burger_name}}</p>
@@ -16,7 +14,7 @@
             {{/each}}
         </div>
 
-        <div class="col-xs-3 main">
+        <div class="col-xs main">
             <img src='assets/img/burger.png' class='d-block' alt="Burger Picture">
             <p id='badName' class="badName err"><strong>That burger already exists</strong></p>
             <p id='tooMuchOnPlate' class='tooMuchOnPlate err' ><strong>Finish what is on your plate before asking for another burger!</strong></p>
@@ -27,16 +25,13 @@
                 placeholder="Your burger here"></textarea>
             <button class='btn btn-primary submit' id='submit' name='submit'>Submit</button>
         </div>
-        <div class="col-xs-3 devoured-container">
-            <div>
+        <div class="col-xs devoured-container">
                 {{#each devoured}}
                 <div class="devoured">
                     <p>{{this.id}}. {{this.burger_name}}</p>
                     <button id="{{this.id}}" class='btn btn-danger trashBtn'>TOSS TRASH!</button>
                 </div>
                 {{/each}}
-            </div>
-
         </div>
     </div>
 
