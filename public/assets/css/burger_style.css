@@ -10,6 +10,10 @@ body{
     margin-top: 40px;
 }
 
+.not-devoured-container, .devoured-container{
+    min-width: 240px;
+}
+
 .not-devoured, .devoured{
     background-color: white;
     margin: 20px;
