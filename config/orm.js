@@ -1,6 +1,6 @@
 const connection = require('./connection.js');          //requiring the mysql connection
 
-const orm = {           //orm object that will be exported to the controller file
+const orm = {           //orm object containing functions to interact with the database
     selectAll: (tableInput, cb) => {        //function used to select all the files within a table
         const queryString = "Select * FROM ??";
         connection.query(queryString, [tableInput], (err, result) => {
@@ -41,6 +41,13 @@ const orm = {           //orm object that will be exported to the controller fil
         if(err) throw err;
         cb(result)
     })
+    },
+    checkHowMany: (table, column, value, cb) =>{
+        const queryString = 'SELECT * FROM ?? WHERE ?? = ?';
+        connection.query(queryString, [table, column, value], (err, result) => {
+            if(err) throw err
+            cb(result)
+        })
     }
 };
 module.exports = orm;

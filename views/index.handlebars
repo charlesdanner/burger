@@ -1,10 +1,12 @@
-       <div class='header text-center'>
-            <h1><strong>EAT - DA - BURGER!</strong></h1>
-        </div>
+<div class='header text-center'>
+    <h1><strong>EAT - DA - BURGER!</strong></h1>
+    <p>Enter the name of a buger you want to eat, then press submit!</p>
+
+</div>
 <div class="container text-center d-flex justify-content-center">
 
     <div class="row">
- 
+
         <div class="col-xs-3">
             {{#each notDevoured}}
             <div class='not-devoured'>
@@ -16,18 +18,21 @@
 
         <div class="col-xs-3 main">
             <img src='assets/img/burger.png' class='d-block' alt="Burger Picture">
-            <p id='badName' class="badName"><strong>That burger already exists</strong></p>
-            <p id='error' class="error"><strong>Type the burger name before submitting</strong></p>
-            <textarea name="newBurger" id="textArea" class='d-block text-center' cols='40' rows="2" placeholder="Your burger here"></textarea>
+            <p id='badName' class="badName err"><strong>That burger already exists</strong></p>
+            <p id='tooMuchOnPlate' class='tooMuchOnPlate err' ><strong>Finish what is on your plate before asking for another burger!</strong></p>
+            <p id='tooManyBurgers' class='tooManyBurgers err'><strong>The trash is full. Take out the garbage before adding any
+                more.</strong></p>
+            <p id='error' class="error err"><strong>Type the burger name before submitting</strong></p>
+            <textarea name="newBurger" id="textArea" class='d-block text-center' cols='40' rows="2"
+                placeholder="Your burger here"></textarea>
             <button class='btn btn-primary submit' id='submit' name='submit'>Submit</button>
-            <p>Enter the name of a buger you want to eat, then press submit!</p>
         </div>
         <div class="col-xs-3">
             <div>
                 {{#each devoured}}
                 <div class="devoured">
-                <p>{{this.id}}. {{this.burger_name}}</p>
-                <button id="{{this.id}}" class='btn btn-danger trashBtn'>TOSS TRASH!</button>
+                    <p>{{this.id}}. {{this.burger_name}}</p>
+                    <button id="{{this.id}}" class='btn btn-danger trashBtn'>TOSS TRASH!</button>
                 </div>
                 {{/each}}
             </div>

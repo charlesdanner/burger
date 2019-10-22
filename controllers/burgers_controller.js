@@ -18,7 +18,7 @@ router.post('/api/new-burger', (req, res) => {                   //when a post r
 router.put('/api/devour-burger/:id', (req, res) => {
     const id = req.params.id;
     burger.update('burgers', 'devoured', true, 'id', id, function(result){
-        res.json(result.changedRows)
+        res.json(result)
     })
 })
 
