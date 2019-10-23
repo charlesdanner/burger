@@ -1,18 +1,15 @@
 document.addEventListener("DOMContentLoaded", event => {        //event listener listening for if the DOM has been loaded completely or not
 
-    const textArea = document.getElementById('textArea');           //HTML text are assigned to a variable
-    const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
-
-
-
-
     ////ALL CLICK EVENTS WRAPPED IN A CONDITIONAL INSIDE ONE EVENT LISTENER
     document.addEventListener('click', event => {
-        const target = event.target
+        const target = event.target;
 
         /////SUBMIT BUTTON function
         const submitNewBurger = () => {
+            const textArea = document.getElementById('textArea');           //HTML text are assigned to a variable
+            const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
             const newBurger = textArea.value.trim();
+            
             resetErrorMessages();                        //reset the error messages, in case there are any.
 
             if (textArea.value.trim() != "") {                       //run the function if text area isn't empty                                              
