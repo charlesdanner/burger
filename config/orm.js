@@ -27,22 +27,21 @@ const orm = {           //orm object containing functions to interact with the d
             cb(burgerExists);     //declared call back function acting on the filter that was populated above
         })
     },
-    updateOne: (table, columnToChange, newValue, searchKey, key, cb) => {
+    updateOne: (table, columnToChange, newValue, searchKey, key, cb) => {  //function called during put requests. changes one row's values
         const queryString = 'UPDATE ?? SET ?? = ? WHERE ?? = ?';
         connection.query(queryString, [table, columnToChange, newValue, searchKey, key], (err, result) => {
             if(err) throw err;
             cb(result)
         })
     },
-    deleteOne: (table, condition, cb ) => {
-        console.log('orm firing')
+    deleteOne: (table, condition, cb ) => {             //function called during a delete request. 
     const queryString  = 'DELETE FROM ?? WHERE id = ?'
     connection.query(queryString, [table, condition], (err, result) => {
         if(err) throw err;
         cb(result)
     })
     },
-    checkHowMany: (table, column, value, cb) =>{
+    checkHowMany: (table, column, value, cb) =>{            //function used to find how many of a row contain a certain value
         const queryString = 'SELECT * FROM ?? WHERE ?? = ?';
         connection.query(queryString, [table, column, value], (err, result) => {
             if(err) throw err

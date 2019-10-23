@@ -13,7 +13,7 @@ app.set('view engine', 'handlebars');                           //setting handle
 
 const routes = require('./controllers/burgers_controller');       //requiring the routing information from burgers_controller.js
 
-app.use(routes)
+app.use(routes)         //use the functions in the controller for the routing
 
 app.listen(PORT, () => {
     console.log(`App listening on PORT ${PORT}`)           //port listening 
