@@ -6,16 +6,19 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
 
     ////RESET ERROR MESSAGES WHENEVER A BUTTON IS PRESSED
     const resetErrorMessages = () => {
-        document.getElementById('error').style.display = 'none';        //set the error message back to its default css display style
+        document.getElementById('error').style.display = 'none';       
         document.getElementById('badName').style.display = 'none';
         document.getElementById('tooManyBurgers').style.display = 'none';
         document.getElementById('tooMuchOnPlate').style.display = 'none';
     }
 
+    /////SETS ERROR MESSAGE
     const showErrorMessage = (element) => {
-        document.getElementById(element).style.display = 'block';       //function for setting up the error messages
-        document.getElementById(element).style.display = 'block'
+        document.getElementById(element).style.display = 'block';       
+        document.getElementById(element).style.color = 'red'
     }
+
+
     ////CLICK EVENT LISTENERS
     document.addEventListener('click', event => {
 
