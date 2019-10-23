@@ -9,7 +9,7 @@
             {{#each notDevoured}}
             <div class='not-devoured'>
                 <p>{{this.id}}. {{this.burger_name}}</p>
-                <button id='{{this.id}}' class='devourBtn btn btn-warning'>DEVOUR IT!</button>
+                <button id='{{this.id}}' name='devourBtn' class='devourBtn btn btn-warning'>DEVOUR IT!</button>
             </div>
             {{/each}}
         </div>
@@ -23,13 +23,13 @@
             <p id='error' class="error err"><strong>Type the burger name before submitting</strong></p>
             <textarea name="newBurger" id="textArea" class='d-block text-center' cols='40' rows="2"
                 placeholder="Your burger here"></textarea>
-            <button class='btn btn-primary submit' id='submit' name='submit'>Submit</button>
+            <button class='btn btn-primary submit' name='submit' id='submit' name='submit'>Submit</button>
         </div>
         <div class="col-xs devoured-container">
                 {{#each devoured}}
                 <div class="devoured">
                     <p>{{this.id}}. {{this.burger_name}}</p>
-                    <button id="{{this.id}}" class='btn btn-danger trashBtn'>TOSS TRASH!</button>
+                    <button id="{{this.id}}" name='trashBtn' class='btn btn-danger trashBtn'>TOSS TRASH!</button>
                 </div>
                 {{/each}}
         </div>

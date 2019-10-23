@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
 
     const textArea = document.getElementById('textArea');           //HTML text are assigned to a variable
     const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
-                                                    
+
 
     ////RESET ERROR MESSAGES WHENEVER A BUTTON IS PRESSED
     const resetErrorMessages = () => {
-        document.getElementById('error').style.display = 'none';       
+        document.getElementById('error').style.display = 'none';
         document.getElementById('badName').style.display = 'none';
         document.getElementById('tooManyBurgers').style.display = 'none';
         document.getElementById('tooMuchOnPlate').style.display = 'none';
@@ -14,17 +14,18 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
 
     /////SETS ERROR MESSAGE
     const showErrorMessage = (element) => {
-        document.getElementById(element).style.display = 'block';       
+        document.getElementById(element).style.display = 'block';
         document.getElementById(element).style.color = 'red'
     }
 
 
-    ////CLICK EVENT LISTENERS
+    ////ALL CLICK EVENTS WRAPPED IN A CONDITIONAL INSIDE ONE EVENT LISTENER
     document.addEventListener('click', event => {
+        const target = event.target
 
-            /////SUBMIT BUTTON LISTENER
-        if (event.target.matches('.submit')) {              //listener for the submit button
-            const newBurger = textArea.value.trim();  
+        /////SUBMIT BUTTON function
+        const submitNewBurger = () => {
+            const newBurger = textArea.value.trim();
             resetErrorMessages();                        //reset the error messages, in case there are any.
 
             if (textArea.value.trim() != "") {                       //run the function if text area isn't empty                                              
@@ -35,21 +36,37 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
             } else showErrorMessage('error')                            //if no value is in the text are when client hits submit, call the error
         }
 
-        //////DEVOUR BUTTON LISTENER
-        if (event.target.matches('.devourBtn')) {
+        //////DEVOUR BUTTON FUNCTION
+        const devourBurger = () => {
             resetErrorMessages();
-            axios.put(`/api/devour-burger/${event.target.id}`)  //make a put request to the server
+            axios.put(`/api/devour-burger/${target.id}`)  //make a put request to the server
                 .then(response => {
                     response.data.tooManyBurgers ? showErrorMessage('tooManyBurgers') : location.reload();  //if the response states there are too many burgers on the devoured side an error message appears, otherwise page refreshes
                 })
         }
 
-        //////DELETE BUTTON LISTENER
-        if (event.target.matches('.trashBtn')) {
-            axios.delete(`/api/delete-burger/${event.target.id}`) //delete the burger in the database where the table id equals the target id
+        //////DELETE BUTTON FUNCTION
+        const throwBurgerInTrash = () => {
+            axios.delete(`/api/delete-burger/${target.id}`) //delete the burger in the database where the table id equals the target id
                 .then(response => {
                     response ? location.reload() : console.log('an error occured')
                 })
+        }
+
+        //////SWITCH CASE TO CALL FUNCTIONS
+        switch (target.name) {
+
+            case "submit":
+                submitNewBurger()
+                break
+
+            case "devourBtn":
+                devourBurger()
+                break
+
+            case "trashBtn":
+                throwBurgerInTrash()
+                break
         }
     })
 })
