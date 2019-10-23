@@ -4,19 +4,6 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
     const devourBtn = document.getElementsByClassName('devourBtn')      //all instances of .devourBtn are assigned to devourBtn
 
 
-    ////RESET ERROR MESSAGES WHENEVER A BUTTON IS PRESSED
-    const resetErrorMessages = () => {
-        document.getElementById('error').style.display = 'none';
-        document.getElementById('badName').style.display = 'none';
-        document.getElementById('tooManyBurgers').style.display = 'none';
-        document.getElementById('tooMuchOnPlate').style.display = 'none';
-    }
-
-    /////SETS ERROR MESSAGE
-    const showErrorMessage = (element) => {
-        document.getElementById(element).style.display = 'block';
-        document.getElementById(element).style.color = 'red'
-    }
 
 
     ////ALL CLICK EVENTS WRAPPED IN A CONDITIONAL INSIDE ONE EVENT LISTENER
@@ -37,21 +24,36 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
         }
 
         //////DEVOUR BUTTON FUNCTION
-        const devourBurger = () => {
+        const devourBurger = (burger) => {
             resetErrorMessages();
-            axios.put(`/api/devour-burger/${target.id}`)  //make a put request to the server
+            axios.put(`/api/devour-burger/${burger}`)  //make a put request to the server
                 .then(response => {
                     response.data.tooManyBurgers ? showErrorMessage('tooManyBurgers') : location.reload();  //if the response states there are too many burgers on the devoured side an error message appears, otherwise page refreshes
                 })
         }
 
         //////DELETE BUTTON FUNCTION
-        const throwBurgerInTrash = () => {
-            axios.delete(`/api/delete-burger/${target.id}`) //delete the burger in the database where the table id equals the target id
+        const throwBurgerInTrash = (burger) => {
+            axios.delete(`/api/delete-burger/${burger}`) //delete the burger in the database where the table id equals the target id
                 .then(response => {
                     response ? location.reload() : console.log('an error occured')
                 })
         }
+
+        ////RESET ERROR MESSAGES WHENEVER A BUTTON IS PRESSED
+        const resetErrorMessages = () => {
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('badName').style.display = 'none';
+            document.getElementById('tooManyBurgers').style.display = 'none';
+            document.getElementById('tooMuchOnPlate').style.display = 'none';
+        }
+
+        /////SETS ERROR MESSAGE
+        const showErrorMessage = element => {
+            document.getElementById(element).style.display = 'block';
+            document.getElementById(element).style.color = 'red'
+        }
+
 
         //////SWITCH CASE TO CALL FUNCTIONS
         switch (target.name) {
@@ -61,11 +63,11 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
                 break
 
             case "devourBtn":
-                devourBurger()
+                devourBurger(target.id)
                 break
 
             case "trashBtn":
-                throwBurgerInTrash()
+                throwBurgerInTrash(target.id)
                 break
         }
     })
