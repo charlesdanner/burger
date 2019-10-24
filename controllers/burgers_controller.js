@@ -3,7 +3,7 @@ const router = express.Router();
 const burger = require('../models/burger.js');
 
 router.get('/', (req, res) => {     //get request made whenever the home page is loaded
-    burger.all(data => {    //model is formed via the burger function which calls the controller to help build it
+    burger.all(data => {    //model is formed via the burger method 
         res.render('index', data)           //handlebars renders model in the index page
     })
 })
@@ -18,7 +18,7 @@ router.post('/api/new-burger', (req, res) => {               //post request made
 router.put('/api/devour-burger/:id', (req, res) => {        //put request made whenever a burger is being devoured
     const id = req.params.id;
     burger.update('burgers', 'devoured', true, 'id', id, result =>{
-        res.json(result)        //sends whether the update was successful or not. This is because only so many can be up at a time
+        res.json(result)                                    //sends whether the update was successful or not. This is because only so many can be up at a time
     })
 })
 

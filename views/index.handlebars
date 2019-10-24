@@ -5,7 +5,7 @@
 </div>
 <div class="container text-center d-flex justify-content-center">
     <div class="row">
-        <div class="col-xs not-devoured-container">
+        <div class="col-xs not-devoured-container" id='notDevouredContainer'>
             {{#each notDevoured}}
             <div class='not-devoured'>
                 <p>{{this.id}}. {{this.burger_name}}</p>
@@ -25,7 +25,8 @@
                 placeholder="Your burger here"></textarea>
             <button class='btn btn-primary submit' name='submit' id='submit' name='submit'>Submit</button>
         </div>
-        <div class="col-xs devoured-container">
+
+        <div class="col-xs devoured-container" id='devouredContainer'>
                 {{#each devoured}}
                 <div class="devoured">
                     <p>{{this.id}}. {{this.burger_name}}</p>
@@ -33,6 +34,7 @@
                 </div>
                 {{/each}}
         </div>
+        
     </div>
 
 </div>
