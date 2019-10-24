@@ -52,18 +52,23 @@ document.addEventListener("DOMContentLoaded", event => {        //event listener
         }
 
     devouredContainer.addEventListener('click', event => {
+        event.preventDefault();
         if(event.target.name === 'trashBtn'){
             throwBurgerInTrash(event.target.id)
         }
     });
 
     notDevouredContainer.addEventListener('click', event => {
+        event.preventDefault();
         if(event.target.name === 'devourBtn'){
             devourBurger(event.target.id)
             
         }
     })
 
-    submit.addEventListener('click', e => submitNewBurger())
+    submit.addEventListener('click', event =>{
+        event.preventDefault();
+        submitNewBurger();
+    } )
 
 })
